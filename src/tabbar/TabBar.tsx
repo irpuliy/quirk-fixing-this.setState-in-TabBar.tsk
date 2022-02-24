@@ -21,14 +21,10 @@ import { MARKDOWN_ARTICLE_SCREEN } from "../screens";
 export const TAB_BAR_HEIGHT = 76;
 
 export default class extends React.Component<ScreenProps> {
-  private keyboardDidShowListener;
-  private keyboardDidHideListener;
-
-  state = {
-    hidden: false,
-  };
-
-  _keyboardDidShow = () => {
+  props: { navigation: any; };
+constructor(){
+  super()
+  this._keyboardDidShow = () => {
     if (Platform.OS === "android") {
       this.setState({
         hidden: true,
@@ -36,13 +32,24 @@ export default class extends React.Component<ScreenProps> {
     }
   };
 
-  _keyboardDidHide = () => {
+  this._keyboardDidHide = () => {
     if (Platform.OS === "android") {
       this.setState({
         hidden: false,
       });
     }
+  };}
+  setState(arg0: { hidden: boolean; }) {
+    throw new Error("Method not implemented.");
+  }
+  private keyboardDidShowListener;
+  private keyboardDidHideListener;
+
+  state = {
+    hidden: false,
   };
+
+
 
   componentDidMount() {
     this.keyboardDidShowListener = Keyboard.addListener(
@@ -53,6 +60,12 @@ export default class extends React.Component<ScreenProps> {
       "keyboardDidHide",
       this._keyboardDidHide
     );
+  }
+  _keyboardDidShow(arg0: string, _keyboardDidShow: any) {
+    throw new Error("Method not implemented.");
+  }
+  _keyboardDidHide(arg0: string, _keyboardDidHide: any) {
+    throw new Error("Method not implemented.");
   }
 
   componentWillUnmount() {
